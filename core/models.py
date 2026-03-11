@@ -31,6 +31,7 @@ class EvidenceCheck:
     sufficient: bool
     missing_information: str
     refined_query: str
+    raw_response: str = ""
 
 
 @dataclass
