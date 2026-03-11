@@ -7,7 +7,6 @@ OUTPUTS_DIR = BASE_DIR / "outputs" / "runs"
 
 OUTPUTS_DIR.mkdir(parents=True, exist_ok=True)
 
-# Snowflake config
 SNOWFLAKE_CONFIG = {
     "account": os.getenv("SNOWFLAKE_ACCOUNT", ""),
     "user": os.getenv("SNOWFLAKE_USER", ""),
@@ -17,19 +16,15 @@ SNOWFLAKE_CONFIG = {
     "schema": os.getenv("SNOWFLAKE_SCHEMA", "SEMANTIC"),
 }
 
-# Models
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-small")
-LLM_MODEL = os.getenv("LLM_MODEL", "gpt-4o-mini")
+SEMANTIC_EMBEDDINGS_TABLE = "PODCASTIQ.SEMANTIC.SEM_CHUNK_EMBEDDINGS"
 
-# Retrieval
+# Snowflake Cortex models
+CORTEX_EMBED_MODEL = os.getenv("CORTEX_EMBED_MODEL", "snowflake-arctic-embed-m")
+CORTEX_LLM_MODEL = os.getenv("CORTEX_LLM_MODEL", "llama3.1-70b")
+
 TOP_K_INITIAL = 8
 TOP_K_REFINED = 8
 FINAL_EVIDENCE_K = 6
-MAX_REALM_PASSES = 2
 
-# Table names
-SEMANTIC_EMBEDDINGS_TABLE = "PODCASTIQ.SEMANTIC.SEM_CHUNK_EMBEDDINGS"
-
-# Prompt files
 EVIDENCE_CHECK_PROMPT_PATH = PROMPTS_DIR / "evidence_check_prompt.txt"
 ANSWER_PROMPT_PATH = PROMPTS_DIR / "answer_prompt.txt"
