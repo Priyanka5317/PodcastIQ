@@ -31,6 +31,15 @@ class SnowflakeClient:
         finally:
             cursor.close()
 
+    def execute_scalar(self, sql: str, params: Optional[tuple] = None) -> Any:
+        rows = self.execute(sql, params)
+        if not rows:
+            return None
+        first_row = rows[0]
+        if not first_row:
+            return None
+        return list(first_row.values())[0]
+
     def close(self):
         if self.conn is not None:
             self.conn.close()
